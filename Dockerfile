@@ -1,36 +1,32 @@
 FROM ubuntu:18.04
 RUN set -xe \
-    && apt-get update \
-    && apt-get install -y apt-utils tzdata locales
-ENV TZ=Europe/Moscow
+    && apt -qq update \
+    && apt -y -qq upgrade \
+    && apt -y -qq install apt-utils tzdata locales 
+ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
      && echo $TZ > /etc/timezone
 RUN set -xe &&\
     dpkg-reconfigure --frontend=noninteractive tzdata && \
-    sed -i -e 's/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen && \
-    echo 'LANG="ru_RU.UTF-8"'>/etc/default/locale && \
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    echo 'LANG="en_US.UTF-8"'>/etc/default/locale && \
     dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=ru_RU.UTF-8
+    update-locale LANG=en_US.UTF-8
 
-ENV LANG ru_RU.UTF-8
-ENV LANGUAGE ru_RU.UTF-8
-ENV LC_ALL ru_RU.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
-
-
-# # Unminimize
 RUN yes | unminimize
-
-
 RUN set -xe \
-    && apt-get install -y vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m  \
-    && useradd -m -p "\$6\$AyOAQ1vh\$CcIXBW4cJopgUVKsTcxlGplUZ382K4yIxIAHhqmEewzJdc6x0MmbSDDQJ1DR.4eueGlYTf2ZbUl9oAQaUQEoi1" -s /bin/bash user \
-    && usermod -aG sudo user \
-    && echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/user \
-    && chmod 0440 /etc/sudoers.d/user 
+    && apt -y -qq install vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m git build-essential xxd file git make build-essential wget \
+    && useradd -m -s /bin/bash ccsss \
+    && usermod -aG sudo ccsss \
+    && echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ccsss \
+    && chmod 0440 /etc/sudoers.d/ccsss 
 
-USER user:user
+USER ccsss:ccsss
 
-WORKDIR /home/user
+WORKDIR /home/ccsss
 
 CMD [ "/bin/bash" ]

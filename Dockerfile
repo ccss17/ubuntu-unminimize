@@ -26,7 +26,7 @@ RUN set -xe \
     && chmod 0440 /etc/sudoers.d/ccsss 
 
 USER ccsss:ccsss
-
 WORKDIR /home/ccsss
 
-CMD [ "/bin/su", "ccsss" ]
+COPY start.sh /
+CMD ["/start.sh"]

@@ -23,33 +23,33 @@ RUN set -xe \
     && useradd -m -p "\$6\$ZEHyOJAy\$697kSQRpVsSnvU4oDl6BtR1LDrHltFPoqvdMJd9Bc0Msfz./iExfCcm7fxt7ZBzOKxAFCpdaj7aTzayT1L.pf/" -s /bin/bash ccsss \
     && usermod -aG sudo ccsss \
     && echo "ccsss ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ccsss \
-    && chmod 0440 /etc/sudoers.d/ccsss 
+    && chmod 0440 /etc/sudoers.d/ccsss \
     # asciiquarium
-    && cd
-    && wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
-    && tar -zxvf Term-Animation-2.4.tar.gz
-    && cd Term-Animation-2.4/
-    && perl Makefile.PL && make && make test
-    && make install
-    && cd
-    && wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-    && tar -zxvf asciiquarium.tar.gz
-    && cd asciiquarium_1.1/
-    && chmod +x asciiquarium
-    && cp asciiquarium /usr/local/bin/
-    # ChristBASHTree
-    && cd
-    && wget -d -c -O /usr/local/bin/ChristBASHTree "https://raw.githubusercontent.com/sergiolepore/ChristBASHTree/master/tree-EN.sh"
-    && chmod +x /usr/local/bin/ChristBASHTree
+    && cd \
+    && wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz \
+    && tar -zxvf Term-Animation-2.4.tar.gz \
+    && cd Term-Animation-2.4/ \
+    && perl Makefile.PL && make && make test \
+    && make install \
+    && cd \
+    && wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz \
+    && tar -zxvf asciiquarium.tar.gz \
+    && cd asciiquarium_1.1/ \
+    && chmod +x asciiquarium \
+    && cp asciiquarium /usr/local/bin/ \
+    # ChristBASHTree 
+    && cd \
+    && wget -d -c -O /usr/local/bin/ChristBASHTree "https://raw.githubusercontent.com/ sergiolepore/ChristBASHTree/master/tree-EN.sh" \
+    && chmod +x /usr/local/bin/ChristBASHTree \
     # unimatrix
-    && wget https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -O /usr/local/bin/unimatrix
-    && chmod a+rx /usr/local/bin/unimatrix
-    # pipes.sh
-    && cd
-    && git clone https://github.com/pipeseroni/pipes.sh
-    && cd pipes.sh
-    && make install
-    # Python Packages
+    && wget https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -O /usr/ local/bin/unimatrix \
+    && chmod a+rx /usr/local/bin/unimatrix \
+    # pipes.sh 
+    && cd \
+    && git clone https://github.com/pipeseroni/pipes.sh \
+    && cd pipes.sh \
+    && make install \
+    # Python Packages 
     && pip3 install YuleLog numpy colorama
 
 USER ccsss:ccsss

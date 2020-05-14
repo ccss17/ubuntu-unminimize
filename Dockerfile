@@ -19,7 +19,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN yes | unminimize
 RUN set -xe \
-    && apt -y -qq install vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m git build-essential xxd file git make build-essential wget libcurses-perl nyancat sl python python3-pip zlib1g libjpeg8-dev zlib1g-dev\
+    && apt -y -qq install vim tmux perl wget tar man sudo adduser netstat-nat net-tools curl w3m git build-essential xxd file git make build-essential wget libcurses-perl nyancat sl python python3-pip zlib1g libjpeg8-dev zlib1g-dev\
     && useradd -m -p "\$6\$ZEHyOJAy\$697kSQRpVsSnvU4oDl6BtR1LDrHltFPoqvdMJd9Bc0Msfz./iExfCcm7fxt7ZBzOKxAFCpdaj7aTzayT1L.pf/" -s /bin/bash ccsss \
     && usermod -aG sudo ccsss \
     && echo "ccsss ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ccsss \

@@ -21,6 +21,14 @@ RUN yes | unminimize
 RUN set -xe \ 
     && apt -y -qq install vim tmux perl wget tar man sudo adduser netstat-nat net-tools curl w3m git build-essential xxd file git make build-essential wget libcurses-perl nyancat sl python python3-pip zlib1g libjpeg8-dev zlib1g-dev
 RUN set -xe \ 
+    apt -y -qq install gnupg \
+    && curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg \
+    && mv bazel.gpg /etc/apt/trusted.gpg.d/ \
+    && echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list \
+    && apt -qq update && apt -y -qq install bazel \
+    && apt -qq update && sudo apt -y -qq full-upgrade
+
+RUN set -xe \ 
     && useradd -m -p "\$6\$ZEHyOJAy\$697kSQRpVsSnvU4oDl6BtR1LDrHltFPoqvdMJd9Bc0Msfz./iExfCcm7fxt7ZBzOKxAFCpdaj7aTzayT1L.pf/" -s /bin/bash ccsss \
     && usermod -aG sudo ccsss \
     && echo "ccsss ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ccsss \

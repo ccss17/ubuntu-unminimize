@@ -1,4 +1,3 @@
-# 이 레포지토리는 이제 https://github.com/Global-Handong-Oriented-Security-Team/ProgrammerBase-Docker 에서 관리됩니다. 
 # ProgrammerBase 실습 환경
 
 이 도커 이미지는 GBC ProgrammerBase 실습 환경입니다.
